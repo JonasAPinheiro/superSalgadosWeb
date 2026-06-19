@@ -1,1 +1,54 @@
-<p>login works!</p>
+<main>
+  <section class="first-part">
+    <form id="form-login" class="form" method="post" data-ajax-form novalidate autocomplete="off">
+      <input type="hidden" name="token_csrf" value="<?= escape($token) ?>" />
+
+      <h2 class="form__title">Login Administrativo</h2>
+      <p class="form__subtitle">Acesse o sistema utilizando seu CPF e senha.</p>
+
+      <div class="form__error js-error-geral"></div>
+
+      <div class="form__group">
+        <label class="form__label">CPF de Acesso:</label>
+        <input
+          id="cpf"
+          class="form__input mask__cpf"
+          name="cpf"
+          type="text"
+          placeholder="000.000.000-00"
+          required
+        />
+        <span class="form__error"></span>
+      </div>
+
+      <div class="form__group">
+        <label class="form__label" for="senha">Senha de Acesso:</label>
+        <div class="input-relative">
+          <input
+            id="senha"
+            class="form__input"
+            name="senha"
+            type="password"
+            placeholder="Mínimo de 8 caracteres"
+            required
+          />
+          <i id="icon-senha" class="ph ph-eye form__inputIcon" onclick="exibirSenha()"></i>
+        </div>
+        <span class="form__error"></span>
+      </div>
+
+      <button type="submit" data-action="login" class="form__button-login">
+        Entrar no Sistema
+      </button>
+    </form>
+  </section>
+  <section class="second-part">
+    <figure>
+      <img
+        src="<?= BASE_URL ?>assets/images/public/logotipoRpvPay500x359.png"
+        alt="LogotipoRpvPay"
+      />
+      <figcaption>Área administrativa interna da RPV Pay.</figcaption>
+    </figure>
+  </section>
+</main>

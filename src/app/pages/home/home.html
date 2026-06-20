@@ -1,1 +1,65 @@
+<div class="home">
+  <div class="home__content">
+    <h1 class="home__title">Novo pedido</h1>
+    <p class="home__subtitle">Escolha os sabores e quantidades desejadas</p>
 
+    @if (salgados$ | async; as salgados) {
+      <div class="home__grid">
+        @for (salgado of salgados; track salgado.id) {
+          <div class="home__card" [class.home__card--esgotado]="salgado.quantidadeEstoque === 0">
+            <span class="home__card-icon">{{ getIcone(salgado.sabor) }}</span>
+            <p class="home__card-nome">{{ salgado.sabor }}</p>
+            <p class="home__card-preco">R$ {{ salgado.preco.toFixed(2) }}</p>
+
+            @if (salgado.quantidadeEstoque === 0) {
+              <p class="home__card-estoque home__card-estoque--zero">Esgotado</p>
+              <button class="home__card-add" disabled>Indisponível</button>
+            } @else {
+              <p class="home__card-estoque">{{ salgado.quantidadeEstoque }} em estoque</p>
+
+              @if (getQuantidadeNoCarrinho(salgado.id) === 0) {
+                <button class="home__card-add" (click)="adicionarAoCarrinho(salgado)">
+                  + Adicionar
+                </button>
+              } @else {
+                <div class="home__card-controls">
+                  <button (click)="diminuirQuantidade(getItemCarrinho(salgado.id)!)">−</button>
+                  <span>{{ getQuantidadeNoCarrinho(salgado.id) }}</span>
+                  <button
+                    (click)="aumentarQuantidade(getItemCarrinho(salgado.id)!)"
+                    [disabled]="getQuantidadeNoCarrinho(salgado.id) >= salgado.quantidadeEstoque"
+                  >
+                    +
+                  </button>
+                </div>
+              }
+            }
+          </div>
+        }
+      </div>
+    }
+
+    @if (carrinho.length > 0) {
+      <div class="home__resumo">
+        <p class="home__resumo-titulo">Seu pedido</p>
+
+        @for (item of carrinho; track item.salgado.id) {
+          <div class="home__resumo-item">
+            <span>{{ item.quantidade }}x {{ item.salgado.sabor }}</span>
+            <span>R$ {{ (item.salgado.preco * item.quantidade).toFixed(2) }}</span>
+          </div>
+        }
+
+        <hr />
+
+        <div class="home__total-row">
+          <div>
+            <p class="home__total-label">Total</p>
+            <p class="home__total-valor">R$ {{ calcularTotal().toFixed(2) }}</p>
+          </div>
+          <button class="home__confirmar" (click)="confirmarPedido()">🛒 Confirmar pedido</button>
+        </div>
+      </div>
+    }
+  </div>
+</div>

@@ -42,7 +42,7 @@ export class Cadastro {
       return;
     }
 
-    const cliente = { nome, email, senha, saldo: 0 };
+    const cliente = { nome, email, senha, saldo: 1000 };
 
     this.authService.cadastrar(cliente).subscribe({
       next: () => {

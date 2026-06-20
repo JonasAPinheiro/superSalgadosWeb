@@ -130,6 +130,17 @@ main {
   color: var(--cor-botao);
 }
 
+.form__input-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
 /* Botão de Login */
 .form__button-login {
   width: 80%;
@@ -189,13 +200,6 @@ main {
   background-color: var(--cor-fundo-destaque);
 }
 
-.second-part figcaption {
-  font-size: 1.6rem;
-  color: var(--cor-texto);
-  font-weight: bold;
-  margin-top: 15px;
-}
-
 .second-part figure {
   width: 70%;
   margin-right: 7.5%;
@@ -205,12 +209,6 @@ main {
   max-width: 100%;
   margin-bottom: 30px;
   animation: float 6s ease-in-out infinite;
-}
-
-.second-part figcaption {
-  font-size: 1.6rem;
-  color: white;
-  font-weight: bold;
 }
 
 .form__button-register {

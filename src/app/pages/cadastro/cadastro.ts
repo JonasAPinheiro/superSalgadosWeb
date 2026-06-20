@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth';
 import { Router } from '@angular/router';
@@ -10,23 +10,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./cadastro.scss'],
 })
 export class Cadastro {
-  form: FormGroup;
+  private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
+  form: FormGroup = this.fb.group({
+    nome: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    senha: ['', Validators.required],
+    confirmarSenha: ['', Validators.required],
+  });
   erro: string = '';
   mostrarSenha: boolean = false;
   mostrarConfirmarSenha: boolean = false;
-
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router,
-  ) {
-    this.form = fb.group({
-      nome: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      senha: ['', Validators.required],
-      confirmarSenha: ['', Validators.required],
-    });
-  }
 
   exibirSenha() {
     this.mostrarSenha = !this.mostrarSenha;

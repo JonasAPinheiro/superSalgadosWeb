@@ -1,6 +1,6 @@
 <main>
   <section class="first-part">
-    <form class="form">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
       <h1 class="form__title">Bem-vindo(a)!</h1>
       <p class="form__subtitle">Acesse o sistema do Super Salgados</p>
 
@@ -10,6 +10,7 @@
           <input
             type="email"
             id="email"
+            formControlName="email"
             class="form__input"
             placeholder="Digite seu e-mail"
             required
@@ -21,18 +22,19 @@
         <label class="form__label" for="password">Senha</label>
         <div class="input-relative">
           <input
-            type="password"
-            id="password"
+            [type]="mostrarSenha ? 'text' : 'password'"
+            id="senha"
+            formControlName="senha"
             class="form__input"
             placeholder="Sua senha"
             required
           />
-          <svg class="form__inputIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            <path
-              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-            />
-          </svg>
+          <i
+            class="ph form__input-icon"
+            [class.ph-eye]="!mostrarSenha"
+            [class.ph-eye-slash]="mostrarSenha"
+            (click)="exibirSenha()"
+          ></i>
         </div>
       </div>
 
@@ -47,7 +49,6 @@
   <section class="second-part">
     <figure>
       <img src="/assets/superSalgadosLogo.png" alt="Logo Super Salgados" />
-      <figcaption>O melhor sistema de gestão para o seu negócio.</figcaption>
     </figure>
   </section>
 </main>

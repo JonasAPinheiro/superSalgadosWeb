@@ -16,8 +16,14 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/cadastro/cadastro').then((m) => m.Cadastro),
   },
   {
-    path: 'home',
-    loadComponent: () => import('./pages/home/home').then((m) => m.Home),
+    path: '',
+    loadComponent: () => import('./layouts/main-layout/main-layout').then((m) => m.MainLayout),
     canActivate: [authGuard],
+    children: [
+      {
+        path: 'home',
+        loadComponent: () => import('./pages/home/home').then((m) => m.Home),
+      },
+    ],
   },
 ];

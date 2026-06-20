@@ -38,6 +38,10 @@
         </div>
       </div>
 
+      @if (erro) {
+        <p style="color: red">{{ erro }}</p>
+      }
+
       <button type="submit" class="form__button-login">Entrar no Sistema</button>
 
       <p class="form__create-account">

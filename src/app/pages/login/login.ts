@@ -32,7 +32,7 @@ export class Login {
         this.router.navigate(['/home']);
       },
       error: (err) => {
-        this.erro = err.erro?.message || 'Email ou senha inválidos';
+        this.erro = err.error?.message || 'Email ou senha inválidos';
       },
     });
   }

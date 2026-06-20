@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Cores da Marca (Sua Logo) */
+  --cor-ouro: #f7b538;
+  --cor-coral: #e88f7b;
+
+  /* Cores de Interface */
+  --cor-botao: #de715f; /* O coral mais forte para destaque */
+  --cor-fundo: #f5f5f5; /* Cinza bem claro de fundo geral */
+  --cor-texto: #333333; /* Grafite escuro para leitura */
+  --cor-subtexto: #666666;
+
+  /* NOVO FUNDO DE DESTAQUE: Um creme suave que remete à panificação e abre o apetite */
+  --cor-fundo-destaque: #fff9f2;
+
+  /* Cores de Feedback */
+  --cor-sucesso: #67a74d;
+  --cor-erro: #d84236;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}

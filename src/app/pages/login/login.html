@@ -1,54 +1,53 @@
 <main>
   <section class="first-part">
-    <form id="form-login" class="form" method="post" data-ajax-form novalidate autocomplete="off">
-      <input type="hidden" name="token_csrf" value="<?= escape($token) ?>" />
+    <form class="form">
+      <h1 class="form__title">Bem-vindo(a)!</h1>
+      <p class="form__subtitle">Acesse o sistema do Super Salgados</p>
 
-      <h2 class="form__title">Login Administrativo</h2>
-      <p class="form__subtitle">Acesse o sistema utilizando seu CPF e senha.</p>
-
-      <div class="form__error js-error-geral"></div>
-
-      <div class="form__group">
-        <label class="form__label">CPF de Acesso:</label>
-        <input
-          id="cpf"
-          class="form__input mask__cpf"
-          name="cpf"
-          type="text"
-          placeholder="000.000.000-00"
-          required
-        />
-        <span class="form__error"></span>
-      </div>
-
-      <div class="form__group">
-        <label class="form__label" for="senha">Senha de Acesso:</label>
+      <div class="form__input-wrapper">
+        <label class="form__label" for="email">E-mail</label>
         <div class="input-relative">
           <input
-            id="senha"
+            type="email"
+            id="email"
             class="form__input"
-            name="senha"
-            type="password"
-            placeholder="Mínimo de 8 caracteres"
+            placeholder="Digite seu e-mail"
             required
           />
-          <i id="icon-senha" class="ph ph-eye form__inputIcon" onclick="exibirSenha()"></i>
         </div>
-        <span class="form__error"></span>
       </div>
 
-      <button type="submit" data-action="login" class="form__button-login">
-        Entrar no Sistema
-      </button>
+      <div class="form__input-wrapper">
+        <label class="form__label" for="password">Senha</label>
+        <div class="input-relative">
+          <input
+            type="password"
+            id="password"
+            class="form__input"
+            placeholder="Sua senha"
+            required
+          />
+          <svg class="form__inputIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path
+              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <button type="submit" class="form__button-login">Entrar no Sistema</button>
+
+      <p class="form__create-account">
+        Ainda não tem cadastro? <a routerLink="/cadastro">Cadastre-se</a>
+      </p>
     </form>
   </section>
+
   <section class="second-part">
     <figure>
-      <img
-        src="<?= BASE_URL ?>assets/images/public/logotipoRpvPay500x359.png"
-        alt="LogotipoRpvPay"
-      />
-      <figcaption>Área administrativa interna da RPV Pay.</figcaption>
+      <img src="/assets/superSalgadosLogo.png" alt="Logo Super Salgados" />
+      <figcaption>O melhor sistema de gestão para o seu negócio.</figcaption>
     </figure>
   </section>
 </main>

@@ -1,7 +1,7 @@
 main {
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 
 .first-part {
@@ -29,12 +29,10 @@ main {
   display: flex;
   align-items: center;
   gap: 6px;
-
   position: absolute;
   top: 75px;
   left: 75px;
-
-  color: var(--text-secondary-dark);
+  color: var(--cor-subtexto);
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 600;
@@ -43,7 +41,7 @@ main {
 
 .form__back-home:hover {
   opacity: 1;
-  color: var(--color-primary);
+  color: var(--cor-ouro);
   transform: translateX(-2px);
 }
 
@@ -56,17 +54,18 @@ main {
   font-size: 2.4rem;
   font-weight: 900;
   text-align: center;
-  color: var(--text-primary-blue);
+  color: var(--cor-texto);
 }
 
 .form__subtitle {
   font-size: 1.1rem;
-  color: var(--text-primary-dark);
+  color: var(--cor-subtexto);
   text-align: center;
   width: 80%;
 }
 
-.form__input-wrapper, .form__group {
+.form__input-wrapper,
+.form__group {
   position: relative;
   width: 80%;
   gap: 2px;
@@ -84,22 +83,23 @@ main {
 
 .form__label {
   margin-left: 2%;
-  color: var(--text-primary-dark);
+  color: var(--cor-texto);
 }
+
 .form__input {
-  color: var(--text-primary-dark);
+  color: var(--cor-texto);
   padding: 12px 45px 12px 20px;
   width: 100%;
   padding-right: 40px;
   font-size: 1rem;
   border: none;
-  border-bottom: 1px solid #d1d5db;
+  border-bottom: 1px solid var(--cor-fundo);
   outline: none;
   transition: all 0.2s ease-in-out;
 }
 
 .form__input:focus {
-  border-color: var(--color-primary);
+  border-color: var(--cor-ouro);
 }
 
 .form__inputIcon {
@@ -122,12 +122,12 @@ main {
 
 .form__forward-password a {
   font-size: 0.95rem;
-  color: var(--text-primary-dark);
+  color: var(--cor-subtexto);
   text-decoration: none;
 }
 
 .form__forward-password:hover a {
-  color: var(--color-primary);
+  color: var(--cor-botao);
 }
 
 /* Botão de Login */
@@ -136,7 +136,7 @@ main {
   padding: 12px;
   font-size: 1.1rem;
   font-weight: bold;
-  background-color: var(--color-primary);
+  background-color: var(--cor-botao);
   color: white;
   border-radius: 15px;
   border: 1px solid transparent;
@@ -146,19 +146,20 @@ main {
 }
 
 .form__button-login:hover {
-  box-shadow: 0 0 8px var(--color-primary-light);
-  color: var(--color-primary);
+  box-shadow: 0 0 8px var(--cor-coral);
+  color: var(--cor-botao);
   background-color: white;
-  border-color: var(--color-primary);
+  border-color: var(--cor-botao);
 }
 
 .form__create-account {
   margin-top: 15px;
   font-size: 1rem;
+  color: var(--cor-texto);
 }
 
 .form__create-account a {
-  color: var(--color-primary);
+  color: var(--cor-ouro);
   font-weight: bold;
   text-decoration: none;
   cursor: pointer;
@@ -169,13 +170,13 @@ main {
 }
 
 .form__back-link {
-  background-color: var(--color-white);
+  background-color: transparent;
   border: none;
   cursor: pointer;
   text-decoration: none;
   margin-top: 20px;
   font-size: 1.1rem;
-  color: var(--text-primary-blue);
+  color: var(--cor-subtexto);
 }
 
 .second-part {
@@ -185,8 +186,14 @@ main {
   justify-content: center;
   text-align: center;
   width: 50%;
-  background-color: var(--color-primary-dark);
-  clip-path: polygon(100% 0%, 100% 49%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+  background-color: var(--cor-fundo-destaque);
+}
+
+.second-part figcaption {
+  font-size: 1.6rem;
+  color: var(--cor-texto);
+  font-weight: bold;
+  margin-top: 15px;
 }
 
 .second-part figure {
@@ -196,7 +203,6 @@ main {
 
 .second-part img {
   max-width: 100%;
-  border-radius: 20px;
   margin-bottom: 30px;
   animation: float 6s ease-in-out infinite;
 }
@@ -204,6 +210,7 @@ main {
 .second-part figcaption {
   font-size: 1.6rem;
   color: white;
+  font-weight: bold;
 }
 
 .form__button-register {
@@ -211,7 +218,7 @@ main {
   padding: 12px;
   font-size: 1.1rem;
   font-weight: bold;
-  background-color: var(--color-primary);
+  background-color: var(--cor-ouro);
   color: white;
   border-radius: 15px;
   border: none;
@@ -223,9 +230,9 @@ main {
 }
 
 .form__button-register:hover {
-  box-shadow: 0 0 5px var(--color-primary-light);
-  color: var(--color-primary);
-  background-color: var(--color-white);
+  box-shadow: 0 0 5px var(--cor-ouro);
+  color: var(--cor-ouro);
+  background-color: white;
 }
 
 .form__method-selector {
@@ -235,7 +242,7 @@ main {
   width: 80%;
 }
 
-.form__method-selector input[type="radio"] {
+.form__method-selector input[type='radio'] {
   display: none;
 }
 
@@ -245,24 +252,23 @@ main {
   align-items: center;
   justify-content: center;
   padding: 12px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--cor-fundo);
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  color: #666;
+  color: var(--cor-subtexto);
   transition: all 0.3s ease;
   text-align: center;
 }
 
-.form__method-selector input[type="radio"]:checked + label {
-  border-color: #007bff;
-  background-color: #f0f7ff;
-  color: #007bff;
+.form__method-selector input[type='radio']:checked + label {
+  border-color: var(--cor-ouro);
+  background-color: white;
+  color: var(--cor-ouro);
 }
 
 .form__method-selector label:hover {
-  border-color: #ccc;
-  background-color: #f8f9fa;
+  border-color: var(--cor-subtexto);
 }
 
 .form__otp-container {
@@ -278,126 +284,24 @@ main {
   text-align: center;
   font-size: 24px;
   font-weight: bold;
-  border: 2px solid #ddd;
+  border: 2px solid var(--cor-fundo);
   border-radius: 8px;
-  background: #f9f9f9;
+  background: white;
 }
 
 .form__otp-input:focus {
-  border-color: var(--color-primary);
+  border-color: var(--cor-ouro);
   outline: none;
-  background: var(--color-white);
 }
 
 .form__redirect-login a {
   font-size: 1rem;
   text-decoration: none;
-  color: var(--color-primary);
+  color: var(--cor-botao);
   cursor: pointer;
 }
 
 .form__input--error {
-  border-color: #e63946;
+  border-color: var(--cor-erro);
   background-color: #fff1f2;
-}
-
-@media (max-width: 1368px) {
-  .form {
-    max-width: 600px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .form {
-    max-width: 450px;
-    padding: 20px;
-  }
-
-  .second-part {
-    width: 45%;
-    clip-path: none;
-    border-radius: 40px 0 0 40px;
-  }
-
-  .first-part {
-    width: 55%;
-  }
-}
-
-@media (max-width: 768px) {
-  main {
-    flex-direction: column;
-  }
-
-  .second-part {
-    display: none;
-  }
-
-  .first-part {
-    width: 100%;
-    min-height: 100vh;
-  }
-
-  .form {
-    max-width: 100%;
-    padding: 30px 20px;
-  }
-
-  .form__input-wrapper,
-  .form__button-login,
-  .form__button-register,
-  .form__method-selector,
-  .form__forward-password {
-    width: 100%;
-  }
-
-  .form__title {
-    font-size: 1.8rem;
-  }
-
-  .form__subtitle {
-    width: 100%;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .form {
-    max-width: 95%;
-    padding: 15px;
-    gap: 12px;
-  }
-
-  .form__title {
-    font-size: 1.6rem;
-  }
-
-  .form__subtitle {
-    font-size: 0.95rem;
-  }
-
-  .form__input-wrapper {
-    width: 100%;
-  }
-
-  .form__button-login,
-  .form__button-register,
-  .form__method-selector,
-  .form__forward-password {
-    width: 100%;
-  }
-
-  .form__otp-input {
-    width: 38px;
-    height: 48px;
-    font-size: 20px;
-  }
-
-  .second-part figure {
-    width: 80%;
-  }
-
-  .second-part figcaption {
-    font-size: 1.2rem;
-  }
 }

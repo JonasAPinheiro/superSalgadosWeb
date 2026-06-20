@@ -1,1 +1,68 @@
-<p>cadastro works!</p>
+<main>
+  <section class="first-part">
+    <figure>
+      <img src="/assets/superSalgadosLogo.png" alt="Logo Super Salgados" />
+    </figure>
+  </section>
+
+  <section class="second-part">
+    <form class="form">
+      <h1 class="form__title">Cadastro</h1>
+      <p class="form__subtitle">Crie sua conta!</p>
+
+      <div class="form__input-wrapper">
+        <label class="form__label" for="nome">Nome</label>
+        <div class="input__relative">
+          <input type="text" id="nome" class="form__input" placeholder="Digite seu nome" required />
+        </div>
+      </div>
+
+      <div class="form__input-wrapper">
+        <label class="form__label" for="email">E-mail</label>
+        <div class="input-relative">
+          <input
+            type="email"
+            id="email"
+            class="form__input"
+            placeholder="Digite seu e-mail"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form__input-wrapper">
+        <label class="form__label" for="password">Senha</label>
+        <div class="input-relative">
+          <input
+            type="password"
+            id="senha"
+            class="form__input"
+            placeholder="Digite sua senha"
+            required
+          />
+          <i class="ph ph-eye"></i>
+        </div>
+      </div>
+
+      <div class="form__input-wrapper">
+        <label class="form__label" for="password">Confirmar Senha</label>
+        <div class="input-relative">
+          <input
+            type="password"
+            id="confirmar-senha"
+            class="form__input"
+            placeholder="Confirme sua senha"
+            required
+          />
+          <i class="ph ph-eye"></i>
+        </div>
+      </div>
+
+      <button type="submit" class="form__button-login">Entrar no Sistema</button>
+
+      <p class="form__create-account">
+        Ainda não tem cadastro? <a routerLink="/cadastro">Cadastre-se</a>
+      </p>
+    </form>
+  </section>
+</main>

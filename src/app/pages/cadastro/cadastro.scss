@@ -46,31 +46,6 @@ main {
   padding: 25px;
 }
 
-.form__back-home {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  position: absolute;
-  top: 75px;
-  left: 75px;
-  color: var(--cor-subtexto);
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-
-.form__back-home:hover {
-  opacity: 1;
-  color: var(--cor-ouro);
-  transform: translateX(-2px);
-}
-
-.form__back-home svg {
-  width: 18px;
-  height: 18px;
-}
-
 .form__title {
   font-size: 2.4rem;
   font-weight: 900;
@@ -123,13 +98,12 @@ main {
   border-color: var(--cor-ouro);
 }
 
-.form__inputIcon {
+.form__input-icon {
   position: absolute;
   right: 15px;
   top: 50%;
   transform: translateY(-50%);
-  width: 22px;
-  height: 22px;
+  font-size: 20px;
   cursor: pointer;
   opacity: 0.7;
   transition: opacity 0.2s;

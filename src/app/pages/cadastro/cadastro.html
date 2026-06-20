@@ -6,14 +6,21 @@
   </section>
 
   <section class="second-part">
-    <form class="form">
-      <h1 class="form__title">Cadastro</h1>
-      <p class="form__subtitle">Crie sua conta!</p>
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <h1 class="form__title">Junte-se a nós!</h1>
+      <p class="form__subtitle">Cadastre-se e comece a comprar salgados.</p>
 
       <div class="form__input-wrapper">
         <label class="form__label" for="nome">Nome</label>
         <div class="input__relative">
-          <input type="text" id="nome" class="form__input" placeholder="Digite seu nome" required />
+          <input
+            type="text"
+            id="nome"
+            formControlName="nome"
+            class="form__input"
+            placeholder="Digite seu nome"
+            required
+          />
         </div>
       </div>
 
@@ -23,6 +30,7 @@
           <input
             type="email"
             id="email"
+            formControlName="email"
             class="form__input"
             placeholder="Digite seu e-mail"
             required
@@ -34,13 +42,19 @@
         <label class="form__label" for="password">Senha</label>
         <div class="input-relative">
           <input
-            type="password"
+            [type]="mostrarSenha ? 'text' : 'password'"
             id="senha"
+            formControlName="senha"
             class="form__input"
             placeholder="Digite sua senha"
             required
           />
-          <i class="ph ph-eye"></i>
+          <i
+            class="ph form__input-icon"
+            [class.ph-eye]="!mostrarSenha"
+            [class.ph-eye-slash]="mostrarSenha"
+            (click)="exibirSenha()"
+          ></i>
         </div>
       </div>
 
@@ -48,20 +62,30 @@
         <label class="form__label" for="password">Confirmar Senha</label>
         <div class="input-relative">
           <input
-            type="password"
+            [type]="mostrarConfirmarSenha ? 'text' : 'password'"
             id="confirmar-senha"
+            formControlName="confirmarSenha"
             class="form__input"
             placeholder="Confirme sua senha"
             required
           />
-          <i class="ph ph-eye"></i>
+          <i
+            class="ph form__input-icon"
+            [class.ph-eye]="!mostrarConfirmarSenha"
+            [class.ph-eye-slash]="mostrarConfirmarSenha"
+            (click)="exibirConfirmarSenha()"
+          ></i>
         </div>
       </div>
 
-      <button type="submit" class="form__button-login">Entrar no Sistema</button>
+      @if (erro) {
+        <p style="color: red">{{ erro }}</p>
+      }
+
+      <button type="submit" class="form__button-login">Criar Conta</button>
 
       <p class="form__create-account">
-        Ainda não tem cadastro? <a routerLink="/cadastro">Cadastre-se</a>
+        Já faz parte do sistema? <a routerLink="/login">Faça login aqui!</a>
       </p>
     </form>
   </section>

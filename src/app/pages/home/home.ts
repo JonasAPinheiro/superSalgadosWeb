@@ -6,6 +6,7 @@ import { SalgadoModel } from '../../models/SalgadoModel';
 import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { ItemCarrinho } from '../../models/PedidoModel';
+import { AlertaService } from '../../services/alerta/alerta';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ export class Home {
   private salgadoService = inject(SalgadoService);
   private pedidoService = inject(PedidoService);
   private authService = inject(AuthService);
+  private alerta = inject(AlertaService);
 
   private reload$ = new BehaviorSubject<void>(undefined);
 
@@ -92,12 +94,13 @@ export class Home {
         clienteAtualizado.saldo -= this.calcularTotal();
         this.authService.salvarSessao(clienteAtualizado);
 
-        alert('Pedido realizado com sucesso!');
+        this.alerta.sucesso('Pedido realizado com sucesso!');
         this.carrinho = [];
-        this.reload$.next();    
+        this.reload$.next();
       },
       error: (err) => {
-        alert(err.error?.message || 'Erro ao realizar pedido');
+        this.alerta.erro('Pedido realizado com sucesso!');
+        this.alerta.erro(err.error?.message || 'Erro ao realizar pedido');
       },
     });
   }

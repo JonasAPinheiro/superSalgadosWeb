@@ -3,6 +3,7 @@ import { PedidoService } from '../../services/pedido/pedido-service';
 import { AuthService } from '../../services/auth';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { BehaviorSubject, Observable, switchMap } from 'rxjs';
+import { AlertaService } from '../../services/alerta/alerta';
 
 @Component({
   selector: 'app-historico',
@@ -13,6 +14,7 @@ import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 export class Historico {
   private pedidoService = inject(PedidoService);
   private authService = inject(AuthService);
+  private alerta = inject(AlertaService);
 
   cliente = this.authService.getClienteLogado();
   private reload$ = new BehaviorSubject<void>(undefined);
@@ -35,8 +37,13 @@ export class Historico {
     return pedido.itens.map((i: any) => `${i.quantidade}x ${i.sabor}`).join(', ');
   }
 
-  estornar(pedido: any) {
-    if (!confirm('Deseja realmente estornar este pedido?')) return;
+  async estornar(pedido: any) {
+    const confirmado = await this.alerta.confirmar(
+      'Estornar pedido?',
+      'Esta ação vai devolver o estoque e o saldo ao cliente.',
+    );
+
+    if (!confirmado) return;
 
     this.pedidoService.estornarPedido(pedido.id).subscribe({
       next: () => {
@@ -44,10 +51,11 @@ export class Historico {
         cliente.saldo += pedido.total;
         this.authService.salvarSessao(cliente);
 
-        this.reload$.next(); 
+        this.alerta.sucesso('Pedido estornado com sucesso!');
+        this.reload$.next();
       },
       error: (err) => {
-        alert(err.error?.message || 'Erro ao estornar pedido');
+        this.alerta.erro(err.error?.message || 'Erro ao estornar pedido');
       },
     });
   }

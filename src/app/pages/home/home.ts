@@ -74,6 +74,10 @@ export class Home {
 
     this.pedidoService.criarPedido(pedido).subscribe({
       next: () => {
+        const cliente = this.authService.getClienteLogado();
+        cliente.saldo -= this.calcularTotal();
+        this.authService.salvarSessao(cliente);
+
         alert('Pedido realizado com sucesso!');
         this.carrinho = [];
       },

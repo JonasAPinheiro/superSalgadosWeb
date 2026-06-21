@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ClienteModel } from '../models/ClienteModel';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +9,9 @@ import { Observable } from 'rxjs';
 export class AuthService {
   private urlApi = 'https://supersalgadosapi.onrender.com/auth';
   private http = inject(HttpClient);
+
+  private clienteSubject = new BehaviorSubject<any>(this.getClienteLogado());
+  cliente$ = this.clienteSubject.asObservable();
 
   login(email: string, senha: string) {
     return this.http.post(`${this.urlApi}/login`, { email, senha });
@@ -20,6 +23,7 @@ export class AuthService {
 
   salvarSessao(cliente: any) {
     localStorage.setItem('cliente', JSON.stringify(cliente));
+    this.clienteSubject.next(cliente);
   }
 
   getClienteLogado(): any {
@@ -33,5 +37,6 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('cliente');
+    this.clienteSubject.next(null);
   }
 }

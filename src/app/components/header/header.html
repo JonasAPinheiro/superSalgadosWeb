@@ -17,9 +17,14 @@
 
     <span class="header__divider"></span>
 
-    <span class="header__usuario"
-      >Olá, <strong>{{ nomeCliente }}</strong></span
-    >
+    @if (cliente$ | async; as cliente) {
+      <span class="header__usuario">
+        <span
+          >Olá, <strong>{{ cliente.nome }}</strong></span
+        >
+        <span class="header__saldo">Saldo: R$ {{ cliente.saldo.toFixed(2) }}</span>
+      </span>
+    }
 
     <button class="header__sair" (click)="sair()" aria-label="Sair">
       <i class="ph ph-sign-out"></i>

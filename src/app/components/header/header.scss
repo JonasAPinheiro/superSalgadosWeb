@@ -25,8 +25,8 @@
 
   &__nav {
     display: flex;
-    align-items: center;
-    gap: 28px;
+    justify-content: space-between;
+    gap: 30px;
   }
 
   &__novo-pedido {
@@ -77,8 +77,15 @@
   }
 
   &__usuario {
+    display: flex;
+    flex-direction: column;
     font-size: 14px;
+    flex: 2;
     color: var(--cor-texto);
+
+    span {
+      white-space: nowrap;
+    }
 
     strong {
       font-weight: 600;

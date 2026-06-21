@@ -46,7 +46,7 @@
         @for (item of carrinho; track item.salgado.id) {
           <div class="home__resumo-item">
             <span>{{ item.quantidade }}x {{ item.salgado.sabor }}</span>
-            <span>R$ {{ (item.salgado.preco * item.quantidade).toFixed(2) }}</span>
+            <span>R$ {{ calcularSubtotalItem(item).toFixed(2) }}</span>
           </div>
         }
 

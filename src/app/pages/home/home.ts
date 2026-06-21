@@ -3,7 +3,7 @@ import { AuthService } from '../../services/auth';
 import { PedidoService } from '../../services/pedido/pedido-service';
 import { SalgadoService } from '../../services/salgado/salgado-service';
 import { SalgadoModel } from '../../models/SalgadoModel';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { ItemCarrinho } from '../../models/PedidoModel';
 
@@ -18,7 +18,11 @@ export class Home {
   private pedidoService = inject(PedidoService);
   private authService = inject(AuthService);
 
-  salgados$: Observable<SalgadoModel[]> = this.salgadoService.listar();
+  private reload$ = new BehaviorSubject<void>(undefined);
+
+  salgados$: Observable<SalgadoModel[]> = this.reload$.pipe(
+    switchMap(() => this.salgadoService.listar()),
+  );
   carrinho: ItemCarrinho[] = [];
 
   adicionarAoCarrinho(salgado: SalgadoModel) {
@@ -55,8 +59,18 @@ export class Home {
     return item ? item.quantidade : 0;
   }
 
+  calcularSubtotalItem(item: ItemCarrinho): number {
+    const subtotal = item.salgado.preco * item.quantidade;
+
+    if (item.quantidade >= 10) {
+      return subtotal * 0.9;
+    }
+
+    return subtotal;
+  }
+
   calcularTotal(): number {
-    return this.carrinho.reduce((acc, item) => acc + item.salgado.preco * item.quantidade, 0);
+    return this.carrinho.reduce((acc, item) => acc + this.calcularSubtotalItem(item), 0);
   }
 
   confirmarPedido() {
@@ -74,12 +88,13 @@ export class Home {
 
     this.pedidoService.criarPedido(pedido).subscribe({
       next: () => {
-        const cliente = this.authService.getClienteLogado();
-        cliente.saldo -= this.calcularTotal();
-        this.authService.salvarSessao(cliente);
+        const clienteAtualizado = this.authService.getClienteLogado();
+        clienteAtualizado.saldo -= this.calcularTotal();
+        this.authService.salvarSessao(clienteAtualizado);
 
         alert('Pedido realizado com sucesso!');
         this.carrinho = [];
+        this.reload$.next();    
       },
       error: (err) => {
         alert(err.error?.message || 'Erro ao realizar pedido');

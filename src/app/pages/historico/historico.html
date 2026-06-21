@@ -1,0 +1,55 @@
+<div class="historico">
+  <div class="historico__content">
+    <h1 class="historico__title">Histórico de Consumo</h1>
+    <p class="historico__subtitle">Seus pedidos e movimentações</p>
+
+    @if (pedidos$ | async; as pedidos) {
+      <div class="historico__resumo">
+        <div class="historico__resumo-card">
+          <p class="historico__resumo-label">Total gasto</p>
+          <p class="historico__resumo-valor">R$ {{ calcularTotalGasto(pedidos).toFixed(2) }}</p>
+        </div>
+        <div class="historico__resumo-card">
+          <p class="historico__resumo-label">Salgados comprados</p>
+          <p class="historico__resumo-valor historico__resumo-valor--escuro">
+            {{ calcularTotalSalgados(pedidos) }}
+          </p>
+        </div>
+      </div>
+
+      <div class="historico__lista">
+        @for (pedido of pedidos; track pedido.id) {
+          <div class="historico__item">
+            <div class="historico__item-info">
+              <span class="historico__item-icon">🥟</span>
+              <div>
+                <div class="historico__item-titulo">
+                  <span>{{ resumoItens(pedido) }}</span>
+                  <span
+                    class="historico__badge"
+                    [class.historico__badge--ativo]="pedido.status === 'ativo'"
+                    [class.historico__badge--estornado]="pedido.status === 'estornado'"
+                  >
+                    {{ pedido.status === 'ATIVO' ? 'Ativo' : 'Estornado' }}
+                  </span>
+                </div>
+                <p class="historico__item-data">
+                  {{ pedido.dataHora | date: 'dd/MM/yyyy, HH:mm:ss' }} — R$
+                  {{ pedido.total.toFixed(2) }}
+                </p>
+              </div>
+            </div>
+
+            @if (pedido.status === 'ativo') {
+              <button class="historico__estornar" (click)="estornar(pedido)">↩ Estornar</button>
+            }
+          </div>
+        }
+
+        @if (pedidos.length === 0) {
+          <p class="historico__vazio">Você ainda não fez nenhum pedido.</p>
+        }
+      </div>
+    }
+  </div>
+</div>

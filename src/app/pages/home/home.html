@@ -8,7 +8,7 @@
         @for (salgado of salgados; track salgado.id) {
           <div class="home__card" [class.home__card--esgotado]="salgado.quantidadeEstoque === 0">
             <span class="home__card-icon">{{ getIcone(salgado.sabor) }}</span>
-            <p class="home__card-nome">{{ salgado.sabor }}</p>
+            <p class="home__card-nome">Salgado de {{ salgado.sabor }}</p>
             <p class="home__card-preco">R$ {{ salgado.preco.toFixed(2) }}</p>
 
             @if (salgado.quantidadeEstoque === 0) {

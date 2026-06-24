@@ -89,7 +89,8 @@ main {
   padding-right: 40px;
   font-size: 1rem;
   border: none;
-  border-bottom: 1px solid var(--cor-fundo);
+  border: 2px solid var(--cor-fundo);
+  border-radius: 8px;
   outline: none;
   transition: all 0.2s ease-in-out;
 }

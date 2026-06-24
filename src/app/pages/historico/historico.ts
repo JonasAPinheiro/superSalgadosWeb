@@ -34,7 +34,7 @@ export class Historico {
   }
 
   resumoItens(pedido: any): string {
-    return pedido.itens.map((i: any) => `${i.quantidade}x ${i.sabor}`).join(', ');
+    return pedido.itens.map((i: any) => `${this.getIcone(i.sabor)}${i.quantidade}x ${i.sabor}`).join(', ');
   }
 
   async estornar(pedido: any) {

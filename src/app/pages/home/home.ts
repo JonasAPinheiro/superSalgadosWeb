@@ -107,10 +107,9 @@ export class Home {
 
   getIcone(sabor: string): string {
     const icones: { [key: string]: string } = {
-      Frango: '🍗',
+      Frango: '🐔',
       Carne: '🥩',
       Queijo: '🧀',
-      Calabresa: '🌶️',
       Pizza: '🍕',
     };
     return icones[sabor] || '🥟';
